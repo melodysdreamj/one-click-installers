@@ -77,7 +77,25 @@ def install_dependencies():
     print("C) Apple M Series")
     print("D) None (I want to run in CPU mode)")
     print()
-    gpuchoice = input("Input> ").lower()
+
+    try:
+        GPT_Brand = os.environ["GitPlayer_GPU_Brand"]
+
+        if GPT_Brand == "NVIDIA":
+            gpuchoice = "a"
+
+        elif GPT_Brand == "AMD":
+            gpuchoice = "b"
+
+        elif GPT_Brand == "Apple":
+            gpuchoice = "c"
+
+        else:
+            gpuchoice = "d"
+        
+    except KeyError:
+        print("환경 변수 GitPlayer_GPU_Brand가 설정되지 않았습니다.")
+        gpuchoice = input("Input> ").lower()
 
     if gpuchoice == "d":
         print_big_message("Once the installation ends, make sure to open webui.py with a text editor\nand add the --cpu flag to CMD_FLAGS.")
@@ -274,4 +292,9 @@ if __name__ == "__main__":
             os.mkdir(conda_path_bin)
 
         # Launch the webui
-        launch_webui()
+
+        try:   
+            DoNotLaunchWebUI = os.environ["DoNotLaunchWebUI"]
+            print("환경 변수 DoNotLaunchWebUI가 설정되어 있습니다.")
+        except KeyError:
+            launch_webui()
