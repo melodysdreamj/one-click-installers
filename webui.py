@@ -296,6 +296,7 @@ if __name__ == "__main__":
         try:   
             DoNotLaunchWebUI = os.environ["DoNotLaunchWebUI"]
             print("환경 변수 DoNotLaunchWebUI가 설정되어 있습니다.")
+            os._exit(0)
         except KeyError:
             print("환경 변수 DoNotLaunchWebUI가 없어 바로 진행합니다.")
             launch_webui()
