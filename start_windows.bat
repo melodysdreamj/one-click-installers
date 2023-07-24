@@ -78,4 +78,4 @@ echo. && echo.
 exit /b
 
 :end
-pause
+IF "%DoNotLaunchWebUI%"=="" pause
