@@ -69,15 +69,6 @@ def check_env():
 
 
 def install_dependencies():
-    # Select your GPU or, choose to run in CPU mode
-    print("What is your GPU")
-    print()
-    print("A) NVIDIA")
-    print("B) AMD")
-    print("C) Apple M Series")
-    print("D) None (I want to run in CPU mode)")
-    print()
-
     try:
         GPT_Brand = os.environ["GitPlayer_GPU_Brand"]
 
@@ -87,7 +78,7 @@ def install_dependencies():
         elif GPT_Brand == "AMD":
             gpuchoice = "b"
 
-        elif GPT_Brand == "Apple":
+        elif GPT_Brand == "Apple M Series":
             gpuchoice = "c"
 
         else:
@@ -95,6 +86,15 @@ def install_dependencies():
         
     except KeyError:
         print("환경 변수 GitPlayer_GPU_Brand가 설정되지 않았습니다.")
+
+        # Select your GPU or, choose to run in CPU mode
+        print("What is your GPU")
+        print()
+        print("A) NVIDIA")
+        print("B) AMD")
+        print("C) Apple M Series")
+        print("D) None (I want to run in CPU mode)")
+        print()
         gpuchoice = input("Input> ").lower()
 
     if gpuchoice == "d":
